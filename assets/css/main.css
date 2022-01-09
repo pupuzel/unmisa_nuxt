@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+/* html,body{overflow-y: hidden;} */
+
+/********************************************** vue *************************************************/
+[v-cloak] > * { display:none;}
+/* .v-application {font-family: 'Noto Sans KR', sans-serif !important;} */
+/* .v-navigation-drawer__content{display: flex; flex-direction: column;} */
+
+/********************************************** Common *************************************************/
+.width-per-100 { width: 100%;}
+.width-per-95 { width: 95%;}
+.width-per-90 { width: 90%;}
+.width-per-85 { width: 85%;}
+.width-per-80 { width: 80%;}
+.width-per-75 { width: 75%;}
+.width-per-70 { width: 70%;}
+.width-per-65 { width: 65%;}
+.width-per-60 { width: 60%;}
+.width-per-55 { width: 55%;}
+.width-per-50 { width: 50%;}
+.width-per-45 { width: 45%;}
+.width-per-40 { width: 40%;}
+.width-per-35 { width: 35%;}
+.width-per-30 { width: 30%;}
+.width-per-25 { width: 25%;}
+.width-per-20 { width: 20%;}
+.width-per-15 { width: 15%;}
+.width-per-10 { width: 10%;}
+.width-per-5 { width: 5%;}
+
+.height-per-100 { height: 100%;}
+.height-per-95 { height: 95%;}
+.height-per-90 { height: 90%;}
+.height-per-85 { height: 85%;}
+.height-per-80 { height: 80%;}
+.height-per-75 { height: 75%;}
+.height-per-70 { height: 70%;}
+.height-per-65 { height: 65%;}
+.height-per-60 { height: 60%;}
+.height-per-55 { height: 55%;}
+.height-per-50 { height: 50%;}
+.height-per-45 { height: 45%;}
+.height-per-40 { height: 40%;}
+.height-per-35 { height: 35%;}
+.height-per-30 { height: 30%;}
+.height-per-25 { height: 25%;}
+.height-per-20 { height: 20%;}
+.height-per-15 { height: 15%;}
+.height-per-10 { height: 10%;}
+.height-per-5 { height: 5%;}
+
+.font-normal{font-weight: normal;}
+.font-bold{font-weight: bold;}
+.font-red{color:red;}
+.font-black{color:black;}
+.font-white{color:white;}
+.font-nowrap{white-space: nowrap;overflow: hidden;}
+.font-center{text-align: center;}
+
+.font-1{font-size: 0.1rem !important;}
+.font-2{font-size: 0.2rem !important;}
+.font-3{font-size: 0.3rem!important;}
+.font-4{font-size: 0.4rem!important;}
+.font-5{font-size: 0.5rem!important;}
+.font-6{font-size: 0.6rem!important;}
+.font-7{font-size: 0.7rem!important;}
+.font-8{font-size: 0.8rem!important;}
+.font-9{font-size: 0.9rem!important;}
+.font-10{font-size: 1.0rem!important;}
+.font-11{font-size: 1.1rem!important;}
+.font-12{font-size: 1.2rem!important;}
+.font-13{font-size: 1.3rem!important;}
+.font-14{font-size: 1.4rem!important;}
+.font-15{font-size: 1.5rem!important;}
+.font-16{font-size: 1.6rem!important;}
+.font-17{font-size: 1.7rem!important;}
+.font-18{font-size: 1.8rem!important;}
+.font-19{font-size: 1.9rem!important;}
+.font-20{font-size: 2.0rem!important;}
+.font-21{font-size: 2.1rem!important;}
+.font-22{font-size: 2.2rem!important;}
+.font-23{font-size: 2.3rem!important;}
+.font-24{font-size: 2.4rem!important;}
+.font-25{font-size: 2.5rem!important;}
+.font-26{font-size: 2.6rem!important;}
+.font-27{font-size: 2.7rem!important;}
+.font-28{font-size: 2.8rem!important;}
+.font-29{font-size: 2.9rem!important;}
+.font-30{font-size: 3.0rem!important;}
+.font-31{font-size: 3.1rem!important;}
+.font-32{font-size: 3.2rem!important;}
+.font-33{font-size: 3.3rem!important;}
+.font-34{font-size: 3.4rem!important;}
+.font-35{font-size: 3.5rem!important;}
+.font-36{font-size: 3.6rem!important;}
+.font-37{font-size: 3.7rem!important;}
+.font-38{font-size: 3.8rem!important;}
+.font-39{font-size: 3.9rem!important;}
+.font-40{font-size: 4.0rem!important;}
+.font-41{font-size: 4.1rem!important;}
+.font-42{font-size: 4.2rem!important;}
+.font-43{font-size: 4.3rem!important;}
+.font-44{font-size: 4.4rem!important;}
+.font-45{font-size: 4.5rem!important;}
+.font-46{font-size: 4.6rem!important;}
+.font-47{font-size: 4.7rem!important;}
+.font-48{font-size: 4.8rem!important;}
+.font-49{font-size: 4.9rem!important;}
+.font-50{font-size: 5.0rem!important;}
+
+.font-weight-100 {font-weight: 100;}
+.font-weight-200 {font-weight: 200;}
+.font-weight-300 {font-weight: 300;}
+.font-weight-400 {font-weight: 400;}
+.font-weight-500 {font-weight: 500;}
+.font-weight-600 {font-weight: 600;}
+.font-weight-700 {font-weight: 700;}
+.font-weight-800 {font-weight: 800;}
+.font-weight-900 {font-weight: 900;}
+
+.font-all-1 *{font-size: 0.1rem !important;}
+.font-all-2 *{font-size: 0.2rem !important;}
+.font-all-3 *{font-size: 0.3rem !important;}
+.font-all-4 *{font-size: 0.4rem !important;}
+.font-all-5 *{font-size: 0.5rem !important;}
+.font-all-6 *{font-size: 0.6rem !important;}
+.font-all-7 *{font-size: 0.7rem !important;}
+.font-all-8 *{font-size: 0.8rem !important;}
+.font-all-9 *{font-size: 0.9rem !important;}
+.font-all-10 *{font-size: 1.0rem !important;}
+.font-all-11 *{font-size: 1.1rem !important;}
+.font-all-12 *{font-size: 1.2rem !important;}
+.font-all-13 *{font-size: 1.3rem !important;}
+.font-all-14 *{font-size: 1.4rem !important;}
+.font-all-15 *{font-size: 1.5rem !important;}
+.font-all-16 *{font-size: 1.6rem !important;}
+.font-all-17 *{font-size: 1.7rem !important;}
+.font-all-18 *{font-size: 1.8rem !important;}
+.font-all-19 *{font-size: 1.9rem !important;}
+.font-all-20 *{font-size: 2.0rem !important;}
+.font-all-21 *{font-size: 2.1rem !important;}
+.font-all-22 *{font-size: 2.2rem !important;}
+.font-all-23 *{font-size: 2.3rem !important;}
+.font-all-24 *{font-size: 2.4rem !important;}
+.font-all-25 *{font-size: 2.5rem !important;}
+.font-all-26 *{font-size: 2.6rem !important;}
+.font-all-27 *{font-size: 2.7rem !important;}
+.font-all-28 *{font-size: 2.8rem !important;}
+.font-all-29 *{font-size: 2.9rem !important;}
+.font-all-30 *{font-size: 3.0rem !important;}
+.font-all-31 *{font-size: 3.1rem !important;}
+.font-all-32 *{font-size: 3.2rem !important;}
+.font-all-33 *{font-size: 3.3rem !important;}
+.font-all-34 *{font-size: 3.4rem !important;}
+.font-all-35 *{font-size: 3.5rem !important;}
+.font-all-36 *{font-size: 3.6rem !important;}
+.font-all-37 *{font-size: 3.7rem !important;}
+.font-all-38 *{font-size: 3.8rem !important;}
+.font-all-39 *{font-size: 3.9rem !important;}
+.font-all-40 *{font-size: 4.0rem !important;}
+.font-all-41 *{font-size: 4.1rem !important;}
+.font-all-42 *{font-size: 4.2rem !important;}
+.font-all-43 *{font-size: 4.3rem !important;}
+.font-all-44 *{font-size: 4.4rem !important;}
+.font-all-45 *{font-size: 4.5rem !important;}
+.font-all-46 *{font-size: 4.6rem !important;}
+.font-all-47 *{font-size: 4.7rem !important;}
+.font-all-48 *{font-size: 4.8rem !important;}
+.font-all-49 *{font-size: 4.9rem !important;}
+.font-all-50 *{font-size: 5.0rem !important;}
+
+.position-fix{position: fixed !important;}
+.position-relative{position: relative !important;}
+.position-absolute{position: absolute !important;}
+.position-center{left: 50%; top: 50%; transform: translate(-50%,-50%);}
+
+.displayHide{display: none !important;}
