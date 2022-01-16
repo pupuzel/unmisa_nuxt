@@ -1,4 +1,4 @@
-export default function ({ $axios, res }) {
+export default function ({ $axios, res, redirect }) {
   $axios.setHeader('Content-Type', false, ['post'])
   $axios.setHeader('Content-Type', 'application/json;charset=UTF-8')
   
@@ -12,6 +12,12 @@ export default function ({ $axios, res }) {
 
   })
   $axios.onResponse((response) => {
+    var data = response.data
+    
+    if(data.result === 'N' && !!data.error){
+        redirect(`/error/500`)
+    }
+
     const setCookies = response.headers['set-cookie'];
     if (setCookies) {
       res.setHeader('Set-Cookie', setCookies);

@@ -14,7 +14,10 @@ module.exports = {
   ],
   plugins: [
   ],
-  ignorePatterns: ["**/modules/*.js"],
+  ignorePatterns: [
+    "**/modules/*.js",
+    "assets/*.js"
+  ],
   rules: {
     "indent": "off",
     "spaced-comment": "off",
@@ -39,7 +42,10 @@ module.exports = {
     "quote-props": "off",
     "no-var": "off",
     "no-tabs": "off",
+    "no-console": process.env.NODE_ENV === 'production'? 'error' : 'off',
     "vue/singleline-html-element-content-newline": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "vue/html-indent": "off",
+    "vue/html-self-closing": "off"
   }
 }

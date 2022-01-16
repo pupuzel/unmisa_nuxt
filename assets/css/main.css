@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
-
-/* html,body{overflow-y: hidden;} */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+html,body{font-size: 12px;}
 
 /********************************************** vue *************************************************/
 [v-cloak] > * { display:none;}
-/* .v-application {font-family: 'Noto Sans KR', sans-serif !important;} */
+.v-application {font-family: 'Pretendard,sans-serif' !important;}
 /* .v-navigation-drawer__content{display: flex; flex-direction: column;} */
 
 /********************************************** Common *************************************************/
@@ -51,7 +50,11 @@
 .height-per-5 { height: 5%;}
 
 .font-normal{font-weight: normal;}
-.font-bold{font-weight: bold;}
+.font-bold{font-weight: 700;}
+.font-bold-300{font-weight: 300;}
+.font-bold-500{font-weight: 500;}
+.font-bold-700{font-weight: 700;}
+.font-bold-900{font-weight: 900;}
 .font-red{color:red;}
 .font-black{color:black;}
 .font-white{color:white;}

@@ -8,7 +8,9 @@
       app
     >
       <div class="cp-toolbar-content">
-        <h3 class="d-flex align-center mr-2">{{title}}</h3>
+        <h3 class="d-flex align-center mr-2">
+          <nuxt-link to="/">{{title}}</nuxt-link>
+        </h3>
         <div class="cp-search-bar d-flex justify-center align-center">
           <v-text-field
             placeholder="검색할 내용을 입력해주세요"
