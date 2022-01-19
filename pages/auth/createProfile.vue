@@ -16,7 +16,7 @@
                 <div class="d-flex flex-column font-8">
                   <input type="file" ref="upImgFile" accept="image/png, image/jpeg, image/jpg" style="display:none;" @change="uploadImgCallback()">
                   <v-btn color="grey darken-3" class="mb-2 white--text" @click="uploadImg()">이미지 변경</v-btn>
-                  <label class="grey--text text--darken4">추천 사이즈 600px*600px<br>jpg,jpeg,png,gif,최대 파일크기 2MB</label>
+                  <label class="grey--text text--darken4">추천 사이즈 600px*600px<br>jpg,jpeg,png 최대 파일크기 10MB</label>
                 </div>
               </div>
             </div>
@@ -142,24 +142,27 @@ export default {
 
   },
   methods: {
-    formValidation(){
-      this.$refs.form.validate()
-    },
-
     uploadImg(){
       this.$refs.upImgFile.click()
     },
 
     uploadImgCallback(){
-        let fileInfo = this.$refs.upImgFile.files[0];
+        const _this = this
+        let fileInfo = _this.$refs.upImgFile.files[0];
         let reader = new FileReader();
-        console.log(fileInfo)
+
         reader.onload = function() {
-            this.$refs.profileThumbnailImg.src = reader.result;
+            _this.$refs.profileThumbnailImg.src = reader.result;
+            const base64img = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+
+            _this.joinInfo.user_profile_img = base64img
+            _this.joinInfo.user_profile_img_type = fileInfo.type
         };
 
         if(fileInfo) {
+          if(fileInfo.type === 'image/jpeg' || fileInfo.type === 'image/png'){
             reader.readAsDataURL(fileInfo);
+          }
         }
     },
 
@@ -168,7 +171,10 @@ export default {
     },
 
     join(){
-      console.log(this.joinInfo)
+      if(this.$refs.form.validate()){
+          const response = this.$axios.post('/api/authenticate/join', this.joinInfo)
+          console.log(response.data)
+      }
     }
   },
   watch: {
@@ -179,5 +185,5 @@ export default {
 
 <style lang="scss" scoped>
 @import '~vuetify/src/styles/styles.sass';
-  .ct-profile-img{border-radius: 20px; border:1px solid map-get($grey, lighten-3)}
+  .ct-profile-img{border-radius: 20px; border:1px solid map-get($grey, lighten-3); object-fit: cover;}
 </style>
