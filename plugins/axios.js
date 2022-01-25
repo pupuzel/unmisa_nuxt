@@ -12,12 +12,6 @@ export default function ({ $axios, res, redirect }) {
 
   })
   $axios.onResponse((response) => {
-    var data = response.data
-    
-    if(data.result === 'N' && !!data.error){
-        redirect(`/error/500`)
-    }
-
     const setCookies = response.headers['set-cookie'];
     if (setCookies) {
       res.setHeader('Set-Cookie', setCookies);

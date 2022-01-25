@@ -9,7 +9,7 @@
 
           <v-form ref="form" v-model="isVaildForm">
             <!-- 프로필 이미지 -->
-            <div class="d-flex flex-column mt-5">
+            <div class="d-flex flex-column">
               <label class="font-bold">프로필 이미지</label>
               <div class="d-flex">
                 <img class="ct-profile-img mr-3" ref="profileThumbnailImg" src="/images/user_default.jpg" width="200" height="200">
@@ -22,9 +22,11 @@
             </div>
 
             <!-- 사용자 이름 -->
-            <div class="d-flex flex-column mt-5">
+            <div class="d-flex flex-column">
               <label class="font-bold">사용자 이름<label class="red--text font-12">*</label></label>
               <v-text-field
+                @blur="checkName"
+                @focus="isCheckName = true"
                 v-model="joinInfo.user_nm"
                 clearable
                 counter
@@ -36,7 +38,7 @@
             </div>
 
             <!-- 한줄 소개 -->
-            <div class="d-flex flex-column mt-5">
+            <div class="d-flex flex-column">
               <label class="font-bold">한줄 소개</label>
               <v-text-field
                 v-model="joinInfo.user_simple_intro"
@@ -48,7 +50,7 @@
             </div>
 
             <!-- 지역 -->
-            <div class="d-flex flex-column mt-5">
+            <div class="d-flex flex-column">
               <label class="font-bold">지역</label>
               <v-text-field
                 v-model="joinInfo.user_area"
@@ -60,7 +62,7 @@
             </div>
 
             <!-- SNS -->
-            <div class="d-flex flex-column mt-5">
+            <div class="d-flex flex-column">
               <label class="font-bold">SNS</label>
               <v-text-field
                 v-model="joinInfo.user_sns"
@@ -72,7 +74,7 @@
             </div>
 
             <!-- 웹사이트 -->
-            <div class="d-flex flex-column mt-5">
+            <div class="d-flex flex-column">
               <label class="font-bold">웹사이트</label>
               <v-text-field
                 v-model="joinInfo.user_site"
@@ -84,7 +86,7 @@
             </div>
 
             <!-- 이벤트 혹은 서비스에 관한 이메일 수신 여부 -->
-            <div class="d-flex flex-column mt-5">
+            <div class="d-flex flex-column">
               <label class="font-bold">이벤트 혹은 서비스에 관한 이메일 수신 여부</label>
               <v-radio-group v-model="joinInfo.email_yn" row>
                 <v-radio
@@ -101,7 +103,6 @@
 
           <div class="d-flex flex-column">
             <v-btn color="primary" class="mb-2" @click="join()">계정 설정을 완료하고 로그인</v-btn>
-            <v-btn color="primary" class="mb-2" @click="cancleJoin()">취소</v-btn>
           </div>
         </v-card>
       </v-col>
@@ -119,25 +120,29 @@ export default {
 
     // 회원가입 정보 가져오기
     const joinInfo = store.state.user.joinInfo
-    if(joinInfo === null){
-      //redirect('/login')
-    }else{
-      // store 정보 remove 이후 회원가입 정보 return
-      store.commit('user/removeJoinInfo')
-      return { joinInfo: common.clone(joinInfo) }
-    }
+    if(joinInfo === null) { redirect('/login') }
+
+    // 회원가입 정보 return
+    store.commit('user/removeJoinInfo')
+    return { joinInfo: common.clone(joinInfo) }
   },
 
+  watch: {
+
+  },
+  
   data() {
     return {
-      joinInfo: {},
+      isCheckName: true,
       isVaildForm: false,
       ruleUserName: [
-          v => (!!v && v.trim().length > 0) || '필수입력 사항입니다.',
-          v => (!v || (!!v && !v.includes(' '))) || '공백을 포함할 수 없습니다'
+          v => (!!v && v.trim().length > 0) || '필수입력 사항입니다',
+          v => (!v || (!!v && !v.includes(' '))) || '공백을 포함할 수 없습니다',
+          v => this.isCheckName || '이미 사용중인 이름입니다'
       ],
     }
   },
+
   computed: {
 
   },
@@ -146,6 +151,7 @@ export default {
       this.$refs.upImgFile.click()
     },
 
+    // 프로필 사진 썸네일 set
     uploadImgCallback(){
         const _this = this
         let fileInfo = _this.$refs.upImgFile.files[0];
@@ -166,19 +172,32 @@ export default {
         }
     },
 
-    cancleJoin(){
+    // 닉네임 중복 체크
+    checkName(){
+      const _this = this
+      const userNm = this.joinInfo.user_nm
 
+      if(!userNm){ return }
+
+      this.$store.dispatch('user/checkName', userNm).then((response) => {
+        const data = response.data
+        if(data.result === 'Y'){
+          _this.isCheckName = true
+        }else{
+          _this.isCheckName = false
+        }
+
+        _this.$refs.form.validate()
+      })
     },
 
-    join(){
+    // 회원가입
+   async join(){
       if(this.$refs.form.validate()){
-          const response = this.$axios.post('/api/authenticate/join', this.joinInfo)
-          console.log(response.data)
+          const response = await this.$axios.post('/api/authenticate/join', this.joinInfo)
+          console.log(response)
       }
     }
-  },
-  watch: {
-
   },
 }
 </script>

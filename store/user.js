@@ -5,9 +5,12 @@ export const state = () => ({
   })
   
 export const mutations = {
+  // 회원가입 정보 초기화
   removeJoinInfo(state) {
     state.joinInfo = null
   },
+
+  // 회원상태 변경
   setUserState(state, value){
     state.userState = value
   },
@@ -25,7 +28,7 @@ export const mutations = {
 }
 
 export const actions = {
-  updateValue({ commit }, payload) {
-    commit('updateValue', payload);
+  checkName(context, user_nm) {
+    return this.$axios.post('/api/authenticate/checkName', { user_nm })
   }
 }
