@@ -15,17 +15,13 @@ export const state = () => ({
 })
 
 export const mutations = { 
-    test(state) { 
-        
-    },
+
 
 }
 
 export const actions = { 
-    queryString(context, param){
-        return Object.keys(param)
-        .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(param[k]))
-        .join('&');
+    nuxtServerInit(storeContext, nuxtContext){
+        
     }
 }
 

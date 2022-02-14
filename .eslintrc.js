@@ -47,6 +47,9 @@ module.exports = {
     "operator-linebreak": "off",
     "vue/html-indent": "off",
     "vue/html-self-closing": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "comma-spacing": "off",
+    "no-unneeded-ternary": "off",
+    "object-curly-newline": "off"
   }
 }

@@ -1,7 +1,7 @@
 export const state = () => ({
     userState: 0, // 0: 비로그인 회원, 1: 로그인한 사용자, 2: 회원가입 필요 회원
-    userInfo: null,
-    joinInfo: null
+    userInfo: null, // 사용자 정보
+    joinInfo: null // 회원가입 정보
   })
   
 export const mutations = {
@@ -15,8 +15,22 @@ export const mutations = {
     state.userState = value
   },
 
+  // 로그인
+  login(state, value){
+    state.joinInfo = null
+    state.userInfo = value
+    state.userState = 1
+  },
+
+  // 로그아웃
+  logout(state){
+    state.joinInfo = null
+    state.userInfo = null
+    state.userState = 0
+  },
+
   // auth 로그인 이후 사용자 정보 set
-  setAuthInfo(state, userInfo){
+  setUserInfo(state, userInfo){
     if(userInfo.user_id === null){
       state.userState = 2
       state.joinInfo = userInfo
@@ -27,8 +41,9 @@ export const mutations = {
   }
 }
 
+//dispatch
 export const actions = {
-  checkName(context, user_nm) {
+  APIcheckName(context, user_nm) {
     return this.$axios.post('/api/authenticate/checkName', { user_nm })
   }
 }

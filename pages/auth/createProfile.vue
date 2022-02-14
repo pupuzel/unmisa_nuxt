@@ -179,7 +179,7 @@ export default {
 
       if(!userNm){ return }
 
-      this.$store.dispatch('user/checkName', userNm).then((response) => {
+      this.$axios.post('/api/authenticate/checkName', { userNm }).then((response) => {
         const data = response.data
         if(data.result === 'Y'){
           _this.isCheckName = true
@@ -195,7 +195,11 @@ export default {
    async join(){
       if(this.$refs.form.validate()){
           const response = await this.$axios.post('/api/authenticate/join', this.joinInfo)
-          console.log(response)
+          const userInfo = response.data.data
+
+          this.$store.commit('user/setUserInfo', userInfo)
+
+          this.$router.replace({ path: '/' })
       }
     }
   },
