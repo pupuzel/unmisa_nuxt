@@ -20,8 +20,14 @@ export const mutations = {
 }
 
 export const actions = { 
-    nuxtServerInit(storeContext, nuxtContext){
-        
+    async nuxtServerInit(storeContext, { $axios , store }){
+        const response = await $axios.post('/api/user/session')
+        const userInfo = response.data.data
+        if(userInfo){
+            store.commit('user/login', userInfo)
+        }else{
+            store.commit('user/logout')
+        }
     }
 }
 

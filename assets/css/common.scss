@@ -1,0 +1,10 @@
+@import '~vuetify/src/styles/styles.sass';
+
+.link-primary{
+    text-decoration: none !important;
+    color: map-get($grey, darken-3) !important;
+    &:hover{
+        text-decoration: underline !important;
+        color: map-get($blue, darken-3) !important;
+    }
+}

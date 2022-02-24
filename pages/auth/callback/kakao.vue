@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import auth from '~/mixins/authcallback.js'
+import MAuthcallback from '@/mixins/MAuthcallback.js'
 
 export default {
-  mixins: [auth],
+  mixins: [MAuthcallback],
   layout: 'login',
   async fetch({ store, $axios, query, redirect }){
       if(query.error === 'login_required'){

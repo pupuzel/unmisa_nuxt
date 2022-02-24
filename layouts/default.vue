@@ -10,7 +10,7 @@
       <div class="cp-toolbar-content">
         <!-- 로고 -->
         <h3 class="d-flex align-center mr-2">
-          <nuxt-link to="/">{{ title }}</nuxt-link>
+          <nuxt-link class="link-primary" to="/">{{ title }}</nuxt-link>
         </h3>
 
         <!-- 검색바 -->
@@ -28,19 +28,24 @@
         <v-spacer></v-spacer>
 
         <!-- 로그인 사용자 정보 -->
-        <div v-if="userState === 1" class="d-flex align-end mr-5">
+        <div v-if="userState === 1" class="d-flex align-end mr-1">
           <v-icon class="font-18 mr-2" color="black">mdi-bell</v-icon>
-          <img class="ct-profile-img mr-1" src="/images/user_default.jpg" width="30" height="30">
-          <label class="font-8 font-bold-700">{{ userInfo.user_nm}}</label>
-          <template v-if="userInfo.oauth_type === 'kakao'">
-            <img class="ct-authicon-img" src="/icon/icon_kakao.png" width="15" height="15">
-          </template>
-          <template v-else-if="userInfo.oauth_type === 'naver'">
-            <img class="ct-authicon-img" src="/icon/icon_naver.png" width="15" height="15">
-          </template>
-          <template v-else-if="userInfo.oauth_type === 'google'">
-            <img class="ct-authicon-img" src="/icon/icon_google.png" width="15" height="15">
-          </template>
+          <div class="d-flex align-end cursor" @click="profile">
+            <img class="ct-profile-img mr-1" src="/images/user_default.jpg" width="30" height="30">
+<!--             
+            <label class="font-8 font-bold-700">{{ userInfo.user_nm}}</label>
+            <template v-if="userInfo.oauth_type === 'kakao'">
+              <img class="ct-authicon-img" src="/icon/icon_kakao.png" width="15" height="15">
+            </template>
+            <template v-else-if="userInfo.oauth_type === 'naver'">
+              <img class="ct-authicon-img" src="/icon/icon_naver.png" width="15" height="15">
+            </template>
+            <template v-else-if="userInfo.oauth_type === 'google'">
+              <img class="ct-authicon-img" src="/icon/icon_google.png" width="15" height="15">
+            </template> 
+-->
+
+          </div>
         </div>
         <v-divider vertical class="mx-3"></v-divider>
 
@@ -57,7 +62,7 @@
     </v-app-bar>
 
     <v-main class="grey lighten-3">
-      <v-container>
+      <v-container fluid>
         <Nuxt/>
       </v-container>
     </v-main>
@@ -73,9 +78,14 @@ export default {
       title: '운동에미친사람들',
     }
   },
+  
   methods: {
     logout() {
       window.location.replace('/logout')
+    },
+
+    profile(){
+      this.$router.push('/user/' + this.userInfo.user_nm)
     }
   },
   computed: {

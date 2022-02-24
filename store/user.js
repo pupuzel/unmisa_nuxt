@@ -31,7 +31,7 @@ export const mutations = {
 
   // auth 로그인 이후 사용자 정보 set
   setUserInfo(state, userInfo){
-    if(userInfo.user_id === null){
+    if(!userInfo.user_id){
       state.userState = 2
       state.joinInfo = userInfo
     }else{
@@ -43,7 +43,7 @@ export const mutations = {
 
 //dispatch
 export const actions = {
-  APIcheckName(context, user_nm) {
+  API(context, user_nm) {
     return this.$axios.post('/api/authenticate/checkName', { user_nm })
   }
 }

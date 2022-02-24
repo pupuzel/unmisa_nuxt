@@ -16,7 +16,7 @@ module.exports = {
   ],
   ignorePatterns: [
     "**/modules/*.js",
-    "assets/*.js"
+    "assets/js/*.js"
   ],
   rules: {
     "indent": "off",

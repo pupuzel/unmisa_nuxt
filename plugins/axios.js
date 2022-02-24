@@ -7,6 +7,7 @@ export default function ({ $axios, res, redirect }) {
   $axios.onError((error) => {
       if(error.response && error.response.status){
         const code = parseInt(error.response.status)
+        console.log('오류 코드 : ' + code)
         //redirect(`/error/${code}`)
       }
 

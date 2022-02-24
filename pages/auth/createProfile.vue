@@ -111,10 +111,12 @@
 
 
 <script>
-import * as common from '~/assets/js/common';
+import MUtils from '@/mixins/MUtils.js'
 
 export default {
-  asyncData({ store, redirect }){
+  mixins: [MUtils],
+
+  asyncData({ app, store, redirect }){
     // UserState 비회원으로 초기화
     store.commit('user/setUserState', 0)
 
@@ -124,7 +126,7 @@ export default {
 
     // 회원가입 정보 return
     store.commit('user/removeJoinInfo')
-    return { joinInfo: common.clone(joinInfo) }
+    return { joinInfo: app.common.clone(joinInfo) }
   },
 
   watch: {
@@ -179,7 +181,7 @@ export default {
 
       if(!userNm){ return }
 
-      this.$axios.post('/api/authenticate/checkName', { userNm }).then((response) => {
+      this.$axios.post('/api/authenticate/checkName', { user_nm: userNm }).then((response) => {
         const data = response.data
         if(data.result === 'Y'){
           _this.isCheckName = true

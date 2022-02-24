@@ -212,3 +212,12 @@ export function getDateCalculator(date, days) {
 	dt.setDate(dt.getDate() + days)
 	return dt.toISOString().substr(0, 10)
   }
+
+export function setHref(str){
+	const regex = new RegExp(/^(https?:\/\/)[a-z]/);
+	if(regex.test(str)){
+		return str
+	}else{
+		return 'http://'+str
+	}
+}

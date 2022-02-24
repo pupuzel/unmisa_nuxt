@@ -2,9 +2,9 @@
 
 /********************************************** vue *************************************************/
 [v-cloak] > * { display:none;}
-.v-application {font-family: 'Pretendard,sans-serif' !important;}
+.v-application {font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif !important;}
 /* .v-navigation-drawer__content{display: flex; flex-direction: column;} */
-
+.container {max-width: 1280px !important;}
 /********************************************** Common *************************************************/
 .width-per-100 { width: 100%;}
 .width-per-95 { width: 95%;}
@@ -178,3 +178,11 @@
 .position-center{left: 50%; top: 50%; transform: translate(-50%,-50%);}
 
 .displayHide{display: none !important;}
+
+.cursor{cursor: pointer;}
+
+.hidden-text{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
