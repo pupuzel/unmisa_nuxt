@@ -50,6 +50,7 @@ module.exports = {
     "camelcase": "off",
     "comma-spacing": "off",
     "no-unneeded-ternary": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "yoda": "off",
   }
 }

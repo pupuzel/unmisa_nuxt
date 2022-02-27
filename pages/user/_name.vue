@@ -6,7 +6,7 @@
         <v-card class="py-3">
           <div class="ct-profile-box1">
             <div class="ct-profile-img px-2">
-              <img :src="userInfo.user_profile_img" @error="errorImg">
+              <img :src="userInfo.user_profile_img" @error="ErrorImg">
             </div>
             <div class="ct-intro-box px-5">
               <span class="font-14 font-weight-600">{{userInfo.user_nm}}</span>
@@ -48,17 +48,19 @@
       </v-col>
 
       <!-- 컨텐츠 -->
-      <v-col class="" md="9">
-        <v-tabs class="mb-2" v-model="tab">
+      <v-col class="pa-0" md="9">
+        <v-tabs class="ct-tabs mb-2 pt-3 px-2" v-model="tab">
           <v-tab v-for="item in tabItems" :key="item.name" :href="'#'+item.name">
             <v-icon class="mr-2">mdi-clipboard-edit-outline</v-icon>
             {{item.text}}
           </v-tab>
         </v-tabs>
 
-        <v-tabs-items touchless v-model="tab">
+        <v-tabs-items class="px-2 pb-3 v-primary-background" touchless v-model="tab">
           <v-tab-item value="diary">
-            <Vdiary/>
+            <template v-for="i in 5">
+              <Vdiary :key="i"/>
+            </template>
           </v-tab-item>
           <v-tab-item value="board">
             
@@ -75,7 +77,6 @@
 <script>
 import Vdiary from '@/components/Vdiary.vue';
 import MUtils from '@/mixins/MUtils.js'
-
 export default {
   mixins: [MUtils],
   components: { Vdiary },
@@ -104,7 +105,7 @@ export default {
     }
   },
   methods: {
-    errorImg(img) {
+    ErrorImg(img) {
       img.target.src = '/images/user_default.jpg'
     },
   },
@@ -118,6 +119,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ct-tabs{max-width: 615px;}
 .ct-profile-box1{
   display: flex; flex-direction: column;
 }

@@ -82,7 +82,7 @@ export default {
   },
   watch: {
     '$vuetify.breakpoint.mobile'(newValue, oldValue) {
-      console.log(newValue)
+      
     }
   },
 }

@@ -8,6 +8,7 @@ $color-kakao: #fee500;
 $color-naver: #1EC800;
 $color-google: #ffffff;
 
+
 @mixin mobile {
     @media (max-width: #{$breakpoint-mobile}){
       @content;

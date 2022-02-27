@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import path from 'path'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -28,6 +29,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/axios.js'},
+    { src: '~/plugins/portal.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -80,6 +82,11 @@ export default {
         }
       }
     }
+  },
+
+  loading: {
+    color: colors.indigo.darken1,
+    height: '5px'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

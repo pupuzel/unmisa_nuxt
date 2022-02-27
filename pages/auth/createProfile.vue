@@ -111,8 +111,7 @@
 
 
 <script>
-import MUtils from '@/mixins/MUtils.js'
-
+import MUtils from "@/mixins/MUtils.js"
 export default {
   mixins: [MUtils],
 

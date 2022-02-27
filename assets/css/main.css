@@ -5,6 +5,10 @@
 .v-application {font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif !important;}
 /* .v-navigation-drawer__content{display: flex; flex-direction: column;} */
 .container {max-width: 1280px !important;}
+.v-primary-background{
+    background-color: #eeeeee !important;
+    border-color: #eeeeee !important;
+}
 /********************************************** Common *************************************************/
 .width-per-100 { width: 100%;}
 .width-per-95 { width: 95%;}
