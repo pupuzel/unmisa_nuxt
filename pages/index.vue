@@ -1,5 +1,5 @@
 <template>
-    <v-row>
+    <v-row class="">
       <!-- 컨텐츠 -->
       <v-col cols="12" md="8">
 

@@ -12,11 +12,7 @@
 
 <script>
 export default {
-  data () {
-    return {
-      title: '운동에미친사람들'
-    }
-  }
+
 }
 </script>
 

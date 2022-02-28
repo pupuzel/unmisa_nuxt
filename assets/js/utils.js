@@ -81,12 +81,31 @@ export function convertDateToMI(data){
 	return String(mi);
 }
 
+export function convertDateToSS(data){
+	var ss = data.getSeconds()
+	if(ss<10) {
+		ss='0'+ss
+	}
+	return String(ss);
+}
+
+export function convertDateDay(data){
+	var week = new Array('일', '월', '화', '수', '목', '금', '토');
+	var today = data.getDay()
+	
+	return week[today]
+}
+
 export function convertDateYYYYMMDD(data){
 	return convertDateToYYYY(data)+'-'+convertDateToMM(data)+'-'+convertDateToDD(data);
 }
 
+export function convertDateHHMISS(data){
+	return convertDateToHH(data)+':'+convertDateToMI(data)+':'+convertDateToSS(data);
+}
+
 export function convertDate(data){
-	return convertDateToYYYY(data)+'-'+convertDateToMM(data)+'-'+convertDateToDD(data)+' '+convertDateToHH(data)+':'+convertDateToMI(data);
+	return convertDateToYYYY(data)+'-'+convertDateToMM(data)+'-'+convertDateToDD(data)+' '+convertDateToHH(data)+':'+convertDateToMI(data)+':'+convertDateToSS(data);
 }
 
 export function dateDiffDay(_date1, _date2, ischeck) {

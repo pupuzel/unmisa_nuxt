@@ -125,7 +125,7 @@ export default {
 
     // 회원가입 정보 return
     store.commit('user/removeJoinInfo')
-    return { joinInfo: app.common.clone(joinInfo) }
+    return { joinInfo: Object.assign({}, joinInfo) }
   },
 
   watch: {

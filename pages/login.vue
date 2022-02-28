@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  layout: 'login',
+  layout: 'LEmpty',
   mounted () {
    
   },

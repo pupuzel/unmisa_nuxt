@@ -1,14 +1,3 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
-/********************************************** vue *************************************************/
-[v-cloak] > * { display:none;}
-.v-application {font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif !important;}
-/* .v-navigation-drawer__content{display: flex; flex-direction: column;} */
-.container {max-width: 1280px !important;}
-.v-primary-background{
-    background-color: #eeeeee !important;
-    border-color: #eeeeee !important;
-}
 /********************************************** Common *************************************************/
 .width-per-100 { width: 100%;}
 .width-per-95 { width: 95%;}
@@ -30,6 +19,7 @@
 .width-per-15 { width: 15%;}
 .width-per-10 { width: 10%;}
 .width-per-5 { width: 5%;}
+.width-fit{ width: fit-content;}
 
 .height-per-100 { height: 100%;}
 .height-per-95 { height: 95%;}

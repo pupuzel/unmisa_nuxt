@@ -6,7 +6,7 @@
         <v-card class="py-3">
           <div class="ct-profile-box1">
             <div class="ct-profile-img px-2">
-              <img :src="userInfo.user_profile_img" @error="ErrorImg">
+              <img :src="ProfileIMG(userInfo.user_profile_img)">
             </div>
             <div class="ct-intro-box px-5">
               <span class="font-14 font-weight-600">{{userInfo.user_nm}}</span>
@@ -59,7 +59,7 @@
         <v-tabs-items class="px-2 pb-3 v-primary-background" touchless v-model="tab">
           <v-tab-item value="diary">
             <template v-for="i in 5">
-              <Vdiary :key="i"/>
+              <VDiary :key="i"/>
             </template>
           </v-tab-item>
           <v-tab-item value="board">
@@ -75,11 +75,11 @@
 
 
 <script>
-import Vdiary from '@/components/Vdiary.vue';
+import VDiary from '@/components/VDiary.vue';
 import MUtils from '@/mixins/MUtils.js'
 export default {
   mixins: [MUtils],
-  components: { Vdiary },
+  components: { VDiary },
   
   // 프로필 사용자 정보 조회(이름으로 조회)
   async asyncData({ params, redirect, $axios }){
@@ -105,8 +105,13 @@ export default {
     }
   },
   methods: {
-    ErrorImg(img) {
-      img.target.src = '/images/user_default.jpg'
+    ProfileIMG(img) {
+      if(img){
+        return img
+      }else{
+        return '/images/user_default.jpg'
+      }
+      
     },
   },
   computed: {

@@ -1,5 +1,26 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 @import '~vuetify/src/styles/styles.sass';
 
+/********************************** vue 초기화 ************************************/
+[v-cloak] > * { display:none;}
+.v-application {font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif !important;}
+/* .v-navigation-drawer__content{display: flex; flex-direction: column;} */
+.container {max-width: 1280px !important;}
+.v-primary-background{
+    background-color: #eeeeee !important;
+    border-color: #eeeeee !important;
+}
+
+.v-white-background{
+    background-color: white !important;
+    border-color: white !important;
+}
+
+
+
+/********************************** Common ************************************/
+
+// a 링크 default
 .link-primary{
     text-decoration: none !important;
     color: map-get($grey, darken-3) !important;
@@ -7,4 +28,46 @@
         text-decoration: underline !important;
         color: map-get($blue, darken-3) !important;
     }
+}
+
+// 글쓰기 layout default
+.create-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .create-box-head{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 64px;
+        border-bottom: 1px solid #dbdbdb;
+        .create-box-head-content{
+            position: relative;
+            width: 100%;
+            max-width: 768px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .create-box-back{
+                position: absolute;
+                left: 0%; top: 0%;
+                font-size: 1.8rem;
+                font-weight: 600;
+            }
+            .create-box-title{
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+        }
+        
+    }
+
+    .create-box-body{
+        max-width: 800px;
+        width: 100%;
+        padding: 24px;
+    }
+    
 }

@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  layout: 'login',
+  layout: 'LEmpty',
   async asyncData({ env, $axios, redirect }){
     if(process.server){
       await $axios.post('/api/authenticate/logout')
