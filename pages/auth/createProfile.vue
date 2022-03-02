@@ -112,6 +112,7 @@
 
 <script>
 import MUtils from "@/mixins/MUtils.js"
+import userAPI from '@/api/userAPI'
 export default {
   mixins: [MUtils],
 
@@ -180,7 +181,8 @@ export default {
 
       if(!userNm){ return }
 
-      this.$axios.post('/api/authenticate/checkName', { user_nm: userNm }).then((response) => {
+      const api = userAPI(this).CheckUserName({ user_nm: userNm })
+      api.then((response) => {
         const data = response.data
         if(data.result === 'Y'){
           _this.isCheckName = true
@@ -195,7 +197,7 @@ export default {
     // 회원가입
    async join(){
       if(this.$refs.form.validate()){
-          const response = await this.$axios.post('/api/authenticate/join', this.joinInfo)
+          const response = await userAPI(this).UserJoin(this.joinInfo)
           const userInfo = response.data.data
 
           this.$store.commit('user/setUserInfo', userInfo)

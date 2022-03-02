@@ -96,16 +96,29 @@ export function convertDateDay(data){
 	return week[today]
 }
 
-export function convertDateYYYYMMDD(data){
-	return convertDateToYYYY(data)+'-'+convertDateToMM(data)+'-'+convertDateToDD(data);
+export function convertDateYYYYMMDD(data, isRemoveBar){
+	if(isRemoveBar){
+		return convertDateToYYYY(data)+convertDateToMM(data)+convertDateToDD(data);
+	}else{
+		return convertDateToYYYY(data)+'-'+convertDateToMM(data)+'-'+convertDateToDD(data);
+	}
 }
 
-export function convertDateHHMISS(data){
-	return convertDateToHH(data)+':'+convertDateToMI(data)+':'+convertDateToSS(data);
+export function convertDateHHMISS(data, isRemoveBar){
+	if(isRemoveBar){
+		return convertDateToHH(data)+convertDateToMI(data)+convertDateToSS(data);
+	}else{
+		return convertDateToHH(data)+':'+convertDateToMI(data)+':'+convertDateToSS(data);
+	}
 }
 
-export function convertDate(data){
-	return convertDateToYYYY(data)+'-'+convertDateToMM(data)+'-'+convertDateToDD(data)+' '+convertDateToHH(data)+':'+convertDateToMI(data)+':'+convertDateToSS(data);
+export function convertDate(data, isRemoveBar){
+	if(isRemoveBar){
+		return convertDateToYYYY(data)+convertDateToMM(data)+convertDateToDD(data)+convertDateToHH(data)+convertDateToMI(data)+convertDateToSS(data);
+	}else{
+		return convertDateToYYYY(data)+'-'+convertDateToMM(data)+'-'+convertDateToDD(data)+' '+convertDateToHH(data)+':'+convertDateToMI(data)+':'+convertDateToSS(data);
+	}
+	
 }
 
 export function dateDiffDay(_date1, _date2, ischeck) {

@@ -4,11 +4,13 @@
 </template>
 
 <script>
+import userAPI from '@/api/userAPI'
+
 export default {
   layout: 'LEmpty',
-  async asyncData({ env, $axios, redirect }){
+  async asyncData({ app, redirect }){
     if(process.server){
-      await $axios.post('/api/authenticate/logout')
+      await userAPI(app).UserLogout()
       redirect('/')
     }else{
       location.reload()

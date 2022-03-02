@@ -77,15 +77,18 @@
 <script>
 import VDiary from '@/components/VDiary.vue';
 import MUtils from '@/mixins/MUtils.js'
+import userAPI from '@/api/userAPI'
 export default {
   mixins: [MUtils],
   components: { VDiary },
   
   // 프로필 사용자 정보 조회(이름으로 조회)
-  async asyncData({ params, redirect, $axios }){
+  async asyncData({ app, params, redirect }){
     if(!params.name){ redirect('/'); return }
     
-    const res = await $axios.post('/api/user/info', { user_nm: encodeURI(params.name) })
+    const param = { user_nm: encodeURI(params.name) }
+    const res = await userAPI(app).SearchUserInfo(param)
+
     const result = res.data.result
 
     if(result === 'N'){ redirect('/'); return }

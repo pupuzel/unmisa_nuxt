@@ -4,6 +4,7 @@
 
 <script>
 import MAuthcallback from '@/mixins/MAuthcallback.js'
+import userAPI from '@/api/userAPI'
 
 export default {
   mixins: [MAuthcallback],
@@ -13,7 +14,9 @@ export default {
         redirect('/login')
       }
 
-      const response = await $axios.post('/api/authenticate/login', { code: query.code, auto_login_yn: query.state === 'Y' ? true : false, auth_type: 'naver' })
+      const param = { code: query.code, auto_login_yn: query.state === 'Y' ? true : false, auth_type: 'naver' }
+      const response = await userAPI(app).UserLogin(param)
+
       const userInfo = response.data.data
       
       store.commit('user/setUserInfo', userInfo)
