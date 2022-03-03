@@ -7,5 +7,8 @@ export default function({ $axios }){
             return $axios.post('/api/diary/create', param)
         },
 
+        CheckDiaryAvailable(param){
+            return $axios.post('/api/diary/checkAvailable', param)
+        },
     }
 }

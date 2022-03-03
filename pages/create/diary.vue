@@ -38,13 +38,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import VCreateBox from '@/components/VCreateBox.vue'
 import MUtils from '@/mixins/MUtils'
 import authAPI from '@/api/authAPI'
 
 export default {
     layout: 'LEmptyWhite',
-    middleware: 'authenticated',
+    middleware: ['MWauthenticated','MWdiary'],
     mixins: [MUtils],
     components: { VCreateBox },
     mounted () {
@@ -66,6 +67,9 @@ export default {
       }
     },
 
+    computed: {
+        ...mapState({ userInfo: state => state.user.userInfo })
+    },
     methods: {
       setDateTitle() {
         var date = new Date()
@@ -85,9 +89,9 @@ export default {
 
         const response = await authAPI(this).CreateDiary(this.diaryInfo)
         if(response.data.result === 'Y'){
-          //
+          this.$router.replace('/user/' + this.userInfo.user_nm)
         }else{
-          console.log(response.data.message)
+          this.$notify.showMessage(response.data.message)
         }
       }
     },

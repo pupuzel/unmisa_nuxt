@@ -1,4 +1,5 @@
 export const state = () => ({ 
+    toastMessage: '',
     menuList: ['헬스 · 다이어트',
             '필라테스 · 요가',
             '크로스핏 · 역도',
@@ -11,12 +12,14 @@ export const state = () => ({
             '등산 · 클라이밍',
             '축구 · 농구 · 야구',
             '골프 · 당구',
-            '자전거 · 스케이트보드'] 
+            '자전거 · 스케이트보드']
+             
 })
 
 export const mutations = { 
-
-
+    showMessage(state,message){
+        state.toastMessage = message;
+    },
 }
 
 export const actions = { 

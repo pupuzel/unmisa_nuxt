@@ -30,6 +30,7 @@ export default {
   plugins: [
     { src: '~/plugins/axios.js'},
     { src: '~/plugins/portal.js'},
+    { src: '~/plugins/notify.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

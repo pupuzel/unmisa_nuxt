@@ -89,6 +89,7 @@
 
 <script>
 import MUtils from '@/mixins/MUtils.js'
+import authAPI from '@/api/authAPI'
 export default {
   mixins: [MUtils],
   props: {
@@ -113,25 +114,19 @@ export default {
     },
 
     // 타입별 글쓰기(게시글,일기,메뉴) 이동 
-    MoveCreate(type){
+    async MoveCreate(type){
       if(!this.userInfo){ this.$router.push('/login') }
 
       // 일기는 하루에 한번만 작성가능 체크
       if(type === 'diary'){
-        const lastDiaryYMD = this.userInfo.user_meta.last_diary_ymd
-
-        if(!lastDiaryYMD){
+        const diary_ymd = this.convertDateYYYYMMDD(new Date(), true)
+        const api = await authAPI(this).CheckDiaryAvailable({ diary_ymd })
+        
+        if(api.data.result === 'Y'){
           this.$router.push('/create/' + type)
         }else{
-          const currentYMD = this.removeDatebar(this.convertDateYYYYMMDD(new Date()))
-          const dateGap = this.dateDiff(lastDiaryYMD, currentYMD)
-          if((0 > dateGap)){
-            this.$router.push('/create/' + type)
-          }else{
-            // 작성 X
-          }
+          this.$notify.showMessage('일기는 하루에 한번 작성 가능합니다')
         }
-
       }else if(type === 'board'){
         //
       }

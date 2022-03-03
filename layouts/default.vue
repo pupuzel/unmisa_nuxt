@@ -9,15 +9,16 @@
       </v-container>
     </v-main>
     
+    <VCommon></VCommon>
   </v-app>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import VHeader from '@/components/VHeader.vue';
-
+import VHeader from '@/components/VTheHeader.vue';
+import VCommon from '@/components/VCommon.vue'
 export default {
-  components: { VHeader },
+  components: { VHeader, VCommon },
   computed: {
       ...mapState({ userState: state => state.user.userState,
                     userInfo: state => state.user.userInfo })

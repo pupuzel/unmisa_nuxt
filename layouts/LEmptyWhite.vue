@@ -7,12 +7,14 @@
       </v-container>
     </v-main>
     
+    <VCommon></VCommon>
   </v-app>
 </template>
 
 <script>
+import VCommon from '@/components/VCommon.vue'
 export default {
-
+  components: { VCommon }
 }
 </script>
 
