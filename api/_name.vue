@@ -6,7 +6,7 @@
         <v-card class="py-3">
           <div class="ct-profile-box1">
             <div class="ct-profile-img px-2">
-              <img :src="ProfileImg(userInfo.user_profile_img)">
+              <img :src="ProfileIMG(userInfo.user_profile_img)">
             </div>
             <div class="ct-intro-box px-5">
               <span class="font-14 font-weight-600">{{userInfo.user_nm}}</span>
@@ -91,7 +91,6 @@ export default {
     return { userInfo: res.data.data }
 
   },
-  
   mounted () {
 
   },
@@ -104,7 +103,7 @@ export default {
     }
   },
   methods: {
-    ProfileImg(img) {
+    ProfileIMG(img) {
       if(img){
         return img
       }else{

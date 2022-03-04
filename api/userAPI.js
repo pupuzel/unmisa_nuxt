@@ -24,8 +24,8 @@ export default function({ $axios }){
         },
 
         // 사용자 정보 조회
-        SearchUserInfo(param){
-            return $axios.post('/api/user/info', param)
+        SelectUserInfo(param){
+            return $axios.post('/api/user/selectUserInfo', param)
         },
     }
 }

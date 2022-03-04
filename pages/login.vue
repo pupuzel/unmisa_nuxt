@@ -8,15 +8,15 @@
         </label>
       </v-row>
       <div class="cp-login-box white">
-        <v-btn tile class="cp-login-btn-kakao" @click="login('kakao')">
+        <v-btn tile class="cp-login-btn-kakao" @click="Login('kakao')">
          <img class="cp-login-btn-icon" src="/icon/icon_kakao.png">
          <label>카카오로 계속하기</label>
         </v-btn>
-        <v-btn tile class="cp-login-btn-naver" @click="login('naver')">
+        <v-btn tile class="cp-login-btn-naver" @click="Login('naver')">
          <img class="cp-login-btn-icon" src="/icon/icon_naver.png">
          <label>네이버로 계속하기</label>
         </v-btn>          
-        <v-btn tile outlined class="cp-login-btn-google" @click="login('google')">
+        <v-btn tile outlined class="cp-login-btn-google" @click="Login('google')">
          <img class="cp-login-btn-icon" src="/icon/icon_google.png">
          <label>구글로 계속하기</label>
         </v-btn>
@@ -53,7 +53,7 @@ export default {
 
   },
   methods: {
-    login(type){
+    Login(type){
       const autoLogin = this.autoLogin ? 'Y' : 'N'
 
       if(type === 'kakao'){

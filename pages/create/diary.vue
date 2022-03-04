@@ -39,7 +39,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import VCreateBox from '@/components/VCreateBox.vue'
 import MUtils from '@/mixins/MUtils'
 import authAPI from '@/api/authAPI'
 
@@ -47,10 +46,9 @@ export default {
     layout: 'LEmptyWhite',
     middleware: ['MWauthenticated','MWdiary'],
     mixins: [MUtils],
-    components: { VCreateBox },
     mounted () {
-      this.setDateTitle()
-      this.jobInterval = setInterval(this.setDateTitle, 1000)
+      this.SetDateTitle()
+      this.jobInterval = setInterval(this.SetDateTitle, 1000)
     },
     destroyed () {
       clearInterval(this.jobInterval)
@@ -71,7 +69,7 @@ export default {
         ...mapState({ userInfo: state => state.user.userInfo })
     },
     methods: {
-      setDateTitle() {
+      SetDateTitle() {
         var date = new Date()
         this.dateTitle = this.convertDateYYYYMMDD(date)
                          + '('

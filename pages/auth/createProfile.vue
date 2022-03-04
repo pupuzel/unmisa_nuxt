@@ -14,8 +14,8 @@
               <div class="d-flex">
                 <img class="ct-profile-img mr-3" ref="profileThumbnailImg" src="/images/user_default.jpg" width="200" height="200">
                 <div class="d-flex flex-column font-8">
-                  <input type="file" ref="upImgFile" accept="image/png, image/jpeg, image/jpg" style="display:none;" @change="uploadImgCallback()">
-                  <v-btn color="grey darken-3" class="mb-2 white--text" @click="uploadImg()">이미지 변경</v-btn>
+                  <input type="file" ref="upImgFile" accept="image/png, image/jpeg, image/jpg" style="display:none;" @change="UploadImgCallback()">
+                  <v-btn color="grey darken-3" class="mb-2 white--text" @click="UploadImg()">이미지 변경</v-btn>
                   <label class="grey--text text--darken4">추천 사이즈 600px*600px<br>jpg,jpeg,png 최대 파일크기 10MB</label>
                 </div>
               </div>
@@ -25,7 +25,7 @@
             <div class="d-flex flex-column">
               <label class="font-bold">사용자 이름<label class="red--text font-12">*</label></label>
               <v-text-field
-                @blur="checkName"
+                @blur="CheckName"
                 @focus="isCheckName = true"
                 v-model="joinInfo.user_nm"
                 clearable
@@ -102,7 +102,7 @@
           </v-form>
 
           <div class="d-flex flex-column">
-            <v-btn color="primary" class="mb-2" @click="join()">계정 설정을 완료하고 로그인</v-btn>
+            <v-btn color="primary" class="mb-2" @click="Join()">계정 설정을 완료하고 로그인</v-btn>
           </div>
         </v-card>
       </v-col>
@@ -149,12 +149,12 @@ export default {
 
   },
   methods: {
-    uploadImg(){
+    UploadImg(){
       this.$refs.upImgFile.click()
     },
 
     // 프로필 사진 썸네일 set
-    uploadImgCallback(){
+    UploadImgCallback(){
         const _this = this
         let fileInfo = _this.$refs.upImgFile.files[0];
         let reader = new FileReader();
@@ -175,7 +175,7 @@ export default {
     },
 
     // 닉네임 중복 체크
-    checkName(){
+    CheckName(){
       const _this = this
       const userNm = this.joinInfo.user_nm
 
@@ -195,7 +195,7 @@ export default {
     },
 
     // 회원가입
-   async join(){
+   async Join(){
       if(this.$refs.form.validate()){
           const response = await userAPI(this).UserJoin(this.joinInfo)
           const userInfo = response.data.data

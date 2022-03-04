@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-    <VHeader :userInfo="userInfo" :userState="userState"></VHeader>
+    <VTheHeader :userInfo="userInfo" :userState="userState"></VTheHeader>
 
     <v-main class="v-primary-background">
       <v-container fluid>
@@ -15,10 +15,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import VHeader from '@/components/VTheHeader.vue';
-import VCommon from '@/components/VCommon.vue'
 export default {
-  components: { VHeader, VCommon },
   computed: {
       ...mapState({ userState: state => state.user.userState,
                     userInfo: state => state.user.userInfo })

@@ -3,8 +3,8 @@
  */
 export default function({ $axios }){
     return {
-        init(param){
-            
+        SelectDiaryList(param){
+            return $axios.post('/api/diary/selectDiaryList', param)
         },
 
     }

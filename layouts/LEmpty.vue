@@ -12,9 +12,8 @@
 </template>
 
 <script>
-import VCommon from '@/components/VCommon.vue'
 export default {
-  components: { VCommon }
+  
 }
 </script>
 
