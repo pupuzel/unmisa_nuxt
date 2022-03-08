@@ -52,5 +52,6 @@ module.exports = {
     "no-unneeded-ternary": "off",
     "object-curly-newline": "off",
     "yoda": "off",
+    "vue/max-attributes-per-line": "off",
   }
 }

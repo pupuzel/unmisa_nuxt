@@ -1,19 +1,26 @@
 <template>
   <div>
-    <VDiaryContent></VDiaryContent>
+    <template v-for="obj in diaryList">
+      <VDiaryContent :diary="obj" :key="obj.diary_id"></VDiaryContent>
+    </template>
+    <client-only>
+      <VlistLoading class="ct-list-loading" v-if="diaryList.length" @infinite="SelectDiaryList(true, $event)"></VlistLoading>
+    </client-only>
   </div>
 </template>
 
 <script>
+import VlistLoading from 'vue-infinite-loading'
 import commonAPI from '@/api/commonAPI'
-
 export default {
   props: {
     userInfo: Object
   },
 
-  fetch(){
-    this.SelectDiaryList()
+  components: { VlistLoading },
+  fetchOnServer: false,
+  async fetch(){
+    await this.SelectDiaryList()
   },
 
   data() {
@@ -22,15 +29,33 @@ export default {
     }
   },
   methods: {
-    async SelectDiaryList(){
+     SelectDiaryList(isCheckPage, $state){
       const param = { user: { user_id: this.userInfo.user_id } }
-      const res = await commonAPI(this).SelectDiaryList(param)
-      
-    }
+      const lastObj = this.diaryList[this.diaryList.length - 1]
+
+      if(isCheckPage){
+        param.diary_id = lastObj.diary_id
+      }
+
+      return commonAPI(this).SelectDiaryList(param).then((res) => {
+        if(res.data.result === 'Y'){
+          if(isCheckPage){
+            this.diaryList.push(...res.data.data)
+          }else{
+            this.diaryList = res.data.data
+          }
+          $state.loaded()
+        }else{
+          $state.complete()
+        }
+      })
+
+    },
+
   },
 }
 </script>
 
 <style lang="scss" scoped>
-
+.ct-list-loading{ max-width: 600px;}
 </style>
