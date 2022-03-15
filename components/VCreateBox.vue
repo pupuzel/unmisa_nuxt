@@ -19,20 +19,11 @@
 </template>
 
 <script>
+import MUtils from '@/mixins/MUtils'
 export default {
+    mixins: [MUtils],
     props: {
         title: String
-    },
-
-    methods: {
-        MoveBack() {
-            const size = window.history.length
-            if(size <= 1){
-                this.$router.replace('/')
-            }else{
-                window.history.back()
-            }
-        }
     },
 }
 </script>

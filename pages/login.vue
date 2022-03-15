@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  layout: 'LEmpty',
+  layout({ store }){ store.commit('setLayout','empty') },
   mounted () {
    
   },

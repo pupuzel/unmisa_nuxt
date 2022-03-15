@@ -10,5 +10,9 @@ export default function({ $axios }){
         CheckDiaryAvailable(param){
             return $axios.post('/api/diary/checkAvailable', param)
         },
+
+        SaveDiaryLike(param){
+            return $axios.post('/api/diary/saveDiaryLike', param)
+        },
     }
 }

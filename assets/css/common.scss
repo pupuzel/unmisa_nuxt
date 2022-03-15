@@ -2,6 +2,8 @@
 @import '~vuetify/src/styles/styles.sass';
 
 /********************************** vue 초기화 ************************************/
+html{overflow: inherit !important;}
+body{overflow-y: scroll;}
 [v-cloak] > * { display:none;}
 .v-application {font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif !important;}
 /* .v-navigation-drawer__content{display: flex; flex-direction: column;} */

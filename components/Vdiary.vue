@@ -1,10 +1,10 @@
 <template>
   <div>
     <template v-for="obj in diaryList">
-      <VDiaryContent :diary="obj" :key="obj.diary_id"></VDiaryContent>
+      <VDiaryContent :key="obj.diary_id" :diary="obj"></VDiaryContent>
     </template>
     <client-only>
-      <VlistLoading class="ct-list-loading" v-if="diaryList.length" @infinite="SelectDiaryList(true, $event)"></VlistLoading>
+      <VlistLoading v-if="diaryList.length" class="ct-list-loading" @infinite="SelectDiaryList(true, $event)"></VlistLoading>
     </client-only>
   </div>
 </template>

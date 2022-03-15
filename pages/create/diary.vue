@@ -43,7 +43,7 @@ import MUtils from '@/mixins/MUtils'
 import authAPI from '@/api/authAPI'
 
 export default {
-    layout: 'LEmptyWhite',
+    layout({ store }){ store.commit('setLayout','emptyWhite') },
     middleware: ['MWauthenticated','MWdiary'],
     mixins: [MUtils],
     mounted () {

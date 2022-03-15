@@ -180,3 +180,5 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.stop-scrolling{ overflow-y: hidden !important;}

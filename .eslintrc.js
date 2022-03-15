@@ -53,5 +53,8 @@ module.exports = {
     "object-curly-newline": "off",
     "yoda": "off",
     "vue/max-attributes-per-line": "off",
+    "vue/require-default-prop": "off",
+    "vue/order-in-components": "off",
+    "vue/html-closing-bracket-newline": "off",
   }
 }

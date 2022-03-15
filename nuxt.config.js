@@ -24,12 +24,14 @@ export default {
   css: [
     '~/assets/css/main.css',
     '~/assets/css/common.scss',
+    'animate.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/axios.js'},
     { src: '~/plugins/notify.js'},
+    { src: '~/plugins/router.js'},
     { src: '~/plugins/common.js'},
   ],
 
@@ -61,6 +63,23 @@ export default {
     '/api/': {
       target: "http://localhost:7000/",
       //pathRewrite: { "^/api/": "" }
+    }
+  },
+
+  router: {
+    scrollBehavior (to, from, savedPosition) {
+      
+    },
+    extendRoutes (routes, resolve) {
+      let userName = routes.find((route) => {
+        return route.name === 'user-name'
+      })
+
+      userName.children.push({
+          path: "/d/:id",
+          component: resolve(__dirname, 'pages/user/name/d/_id.vue'),
+          name: "user-diary-id"
+      })
     }
   },
 

@@ -1,4 +1,5 @@
 export const state = () => ({ 
+    layout: 'default',
     toastMessage: '',
     menuList: ['헬스 · 다이어트',
             '필라테스 · 요가',
@@ -12,13 +13,19 @@ export const state = () => ({
             '등산 · 클라이밍',
             '축구 · 농구 · 야구',
             '골프 · 당구',
-            '자전거 · 스케이트보드']
+            '자전거 · 스케이트보드'],
+    keepPageList: ['pages/index.vue',
+                   'pages/user/_name.vue'],
              
 })
 
 export const mutations = { 
     showMessage(state,message){
         state.toastMessage = message;
+    },
+
+    setLayout(state,name){
+        state.layout = name;
     },
 }
 

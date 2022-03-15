@@ -67,9 +67,6 @@
 
 <script>
 export default {
-  mounted () {
-   
-  },
   data() {
     return {
       device: 'W'
@@ -82,7 +79,7 @@ export default {
   },
   watch: {
     '$vuetify.breakpoint.mobile'(newValue, oldValue) {
-      
+      //console.log(newValue)
     }
   },
 }

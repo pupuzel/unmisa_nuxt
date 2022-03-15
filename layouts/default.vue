@@ -1,11 +1,14 @@
 <template>
   <v-app>
+    <VTheHeader 
+      v-show="layout === 'default'" 
+      :user-info="userInfo" 
+      :user-state="userState"></VTheHeader>
 
-    <VTheHeader :userInfo="userInfo" :userState="userState"></VTheHeader>
-
-    <v-main class="v-primary-background">
+    <v-main :class="{'v-primary-background': layout !== 'emptyWhite',
+                     'v-white-background': layout === 'emptyWhite'}">
       <v-container fluid>
-        <Nuxt/>
+        <Nuxt keep-alive :keep-alive-props="{ include: keepPageList }" />
       </v-container>
     </v-main>
     
@@ -18,7 +21,9 @@ import { mapState } from 'vuex'
 export default {
   computed: {
       ...mapState({ userState: state => state.user.userState,
-                    userInfo: state => state.user.userInfo })
+                    userInfo: state => state.user.userInfo,
+                    keepPageList: state => state.keepPageList,
+                    layout: state => state.layout })
   }
 }
 </script>
