@@ -55,7 +55,7 @@
           <v-icon class="font-18 mr-2 cursor" color="black">mdi-bell</v-icon>
 
           <!-- 프로필 아이콘 -->
-          <div class="d-flex align-end cursor" @click="MoveProfile">
+          <NuxtLink class="d-flex align-end cursor" :to="'/user/' + userInfo.user_nm">
             <img class="ct-profile-img mr-1" src="/images/user_default.jpg" width="30" height="30">
 <!--             
             <label class="font-8 font-bold-700">{{ userInfo.user_nm}}</label>
@@ -70,7 +70,7 @@
             </template> 
 -->
 
-          </div>
+          </NuxtLink>
         </div>
         <v-divider vertical class="mx-3"></v-divider>
 
@@ -106,11 +106,6 @@ export default {
     // 사용자 로그아웃
     Logout() {
       window.location.replace('/logout')
-    },
-
-    // 사용자 프로필 이동
-    MoveProfile(){
-      this.$router.push('/user/' + this.userInfo.user_nm)
     },
 
     // 타입별 글쓰기(게시글,일기,메뉴) 이동 

@@ -19,7 +19,7 @@
         <label class="font-bold">{{ info.diary_like_cnt }}명</label>이 좋아해요
       </div>
       <div class="d-flex align-center">
-        <label class="font-weight-600 cursor" @click="MoveComment(info.diary_id)">댓글 {{ info.diary_cmt_cnt }}개</label>
+        <NuxtLink class="font-weight-600 cursor" :to="'/d/'+info.diary_id">댓글 {{ info.diary_cmt_cnt }}개</NuxtLink>
       </div>
     </div>
   </v-card>
@@ -63,10 +63,6 @@ export default {
       var param = { like_yn: val, diary_id: this.info.diary_id }
       const res = await authAPI(this).SaveDiaryLike(param)
     },
-
-    MoveComment(id){
-      this.$router.push(`/d/${id}`)
-    }
   },
 }
 </script>

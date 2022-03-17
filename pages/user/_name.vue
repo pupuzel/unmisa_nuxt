@@ -77,13 +77,19 @@
 import MUtils from '@/mixins/MUtils.js'
 import userAPI from '@/api/userAPI'
 export default {
+  // 현재 페이지가 keepalive 때문에 자식 페이지 제외 시키기 위해 key 추가
+  key(route){
+    return `/user/${route.params.name}`
+  },
+  mounted () {
+
+  },
   mixins: [MUtils],
-  
+
   // 프로필 사용자 정보 조회(이름으로 조회)
   async asyncData({ app, params, redirect, route }){
-
     //일기 체크
-    if(process.server && route.name === 'user-diary-id'){
+    if(route.name === 'user-diary-id' && !params.name){
       return { isCheckDiary: true }
     }
 
@@ -124,9 +130,6 @@ export default {
     },
   },
   computed: {
-
-  },
-  watch: {
 
   },
 }

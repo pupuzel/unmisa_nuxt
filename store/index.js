@@ -14,9 +14,8 @@ export const state = () => ({
             '축구 · 농구 · 야구',
             '골프 · 당구',
             '자전거 · 스케이트보드'],
-    keepPageList: ['pages/index.vue',
+    includeKeepList: ['pages/index.vue',
                    'pages/user/_name.vue'],
-             
 })
 
 export const mutations = { 

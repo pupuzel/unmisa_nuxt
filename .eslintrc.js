@@ -56,5 +56,6 @@ module.exports = {
     "vue/require-default-prop": "off",
     "vue/order-in-components": "off",
     "vue/html-closing-bracket-newline": "off",
+    "no-lonely-if": "off",
   }
 }

@@ -8,7 +8,7 @@
     <v-main :class="{'v-primary-background': layout !== 'emptyWhite',
                      'v-white-background': layout === 'emptyWhite'}">
       <v-container fluid>
-        <Nuxt keep-alive :keep-alive-props="{ include: keepPageList }" />
+        <Nuxt keep-alive :keep-alive-props="{ include: includeKeepList }" />
       </v-container>
     </v-main>
     
@@ -22,7 +22,7 @@ export default {
   computed: {
       ...mapState({ userState: state => state.user.userState,
                     userInfo: state => state.user.userInfo,
-                    keepPageList: state => state.keepPageList,
+                    includeKeepList: state => state.includeKeepList,
                     layout: state => state.layout })
   }
 }

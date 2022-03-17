@@ -44,9 +44,15 @@ export default {
           }else{
             this.diaryList = res.data.data
           }
-          $state.loaded()
+
+          if($state){
+            $state.loaded()
+          }
+         
         }else{
-          $state.complete()
+          if($state){
+            $state.complete()
+          }
         }
       })
 
