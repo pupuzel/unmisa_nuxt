@@ -13,6 +13,14 @@ export default {
             }
         },
 
+        ProfileImg(img) {
+            if(img){
+                return img
+            }else{
+                return '/images/user_default.jpg'
+            }
+        },
+
         DisableScroll(){
             document.body.classList.add("stop-scrolling");
         },

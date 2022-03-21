@@ -111,6 +111,7 @@
 
 
 <script>
+import cover from 'canvas-image-cover'
 import MUtils from "@/mixins/MUtils.js"
 import userAPI from '@/api/userAPI'
 export default {
@@ -160,11 +161,22 @@ export default {
         let reader = new FileReader();
 
         reader.onload = function() {
-            _this.$refs.profileThumbnailImg.src = reader.result;
-            const base64img = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+            var img = new Image();
+            img.src = reader.result; 
+            img.onload = function() {
+              const canvas = document.createElement('canvas');
+              const ctx = canvas.getContext('2d');
+              canvas.width = 600;
+              canvas.height = 600;
+              cover(img, 0, 0, 600, 600).render(ctx);
 
-            _this.joinInfo.user_profile_img = base64img
-            _this.joinInfo.user_profile_img_type = fileInfo.type
+              var base64 = canvas.toDataURL('image/*');
+              _this.$refs.profileThumbnailImg.src = base64;
+
+              const base64img = base64.replace(/^data:image\/[a-z]+;base64,/, "");
+              _this.joinInfo.user_profile_img = base64img
+              _this.joinInfo.user_profile_img_type = fileInfo.type
+            }
         };
 
         if(fileInfo) {
@@ -195,7 +207,7 @@ export default {
     },
 
     // 회원가입
-   async Join(){
+    async Join(){
       if(this.$refs.form.validate()){
           const response = await userAPI(this).UserJoin(this.joinInfo)
           const userInfo = response.data.data

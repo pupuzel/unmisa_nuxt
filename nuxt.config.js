@@ -33,6 +33,7 @@ export default {
     { src: '~/plugins/notify.js'},
     { src: '~/plugins/router.js'},
     { src: '~/plugins/common.js'},
+    { src: '~/plugins/bus.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

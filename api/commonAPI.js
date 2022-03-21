@@ -7,5 +7,9 @@ export default function({ $axios }){
             return $axios.post('/api/diary/selectDiaryList', param)
         },
 
+        SelectDiary(param){
+            return $axios.post('/api/diary/selectDiary', param)
+        },
+
     }
 }

@@ -2,7 +2,7 @@
   <v-icon 
     @click="LikeChange"
     class="ct-like font-18 mr-1 cursor animate__animated" 
-    :class="{ 'red--text text--lighten-2': isCheckLike,
+    :class="{ 'red--text text--lighten-2': likeYn,
               'animate__heartBeat': isAnimation }">
     mdi-heart
   </v-icon>
@@ -17,7 +17,6 @@ export default {
 
     data() {
         return {
-            isCheckLike: this.likeYn,
             isAnimation: false 
         }
     },
@@ -25,13 +24,11 @@ export default {
     methods: {
         LikeChange() {
             if(this.$auth()){
-                if(this.isCheckLike){
+                if(this.likeYn){
                     this.isAnimation = false
-                    this.isCheckLike = false
                     this.onLike(false)
                 }else{
                     this.isAnimation = true
-                    this.isCheckLike = true
                     this.onLike(true)
                 }
             }

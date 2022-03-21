@@ -120,14 +120,7 @@ export default {
     }
   },
   methods: {
-    ProfileImg(img) {
-      if(img){
-        return img
-      }else{
-        return '/images/user_default.jpg'
-      }
-      
-    },
+
   },
   computed: {
 

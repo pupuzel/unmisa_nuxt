@@ -1,25 +1,25 @@
 <template>
   <v-card class="my-2 py-1 px-2" max-width="600" elevation="3">
     <div class="ct-title">{{ title }}</div>
-    <div class="ct-content">{{ info.diary_content }}</div>
+    <div class="ct-content">{{ diaryInfo.diary_content }}</div>
     <div class="ct-tag-box">
-      <v-chip v-if="info.diary_place" 
+      <v-chip v-if="diaryInfo.diary_place" 
               class="font-8" 
               color="primary" 
               text-color="white" 
               label 
               small>
         <v-icon class="font-12" left>mdi-map-marker</v-icon>
-        {{ info.diary_place }}
+        {{ diaryInfo.diary_place }}
       </v-chip>
     </div>
     <div class="ct-footer">
       <div class="d-flex align-center">
-        <VLike :on-like="LikeHit" :like-yn="info.like_yn"></VLike>
-        <label class="font-bold">{{ info.diary_like_cnt }}명</label>이 좋아해요
+        <VLike :on-like="LikeHit" :like-yn.sync="diaryInfo.like_yn"></VLike>
+        <label class="font-bold">{{ diaryInfo.diary_like_cnt }}명</label>이 좋아해요
       </div>
       <div class="d-flex align-center">
-        <NuxtLink class="font-weight-600 cursor" :to="'/d/'+info.diary_id">댓글 {{ info.diary_cmt_cnt }}개</NuxtLink>
+        <NuxtLink class="font-weight-600 cursor" :to="'/d/'+diaryInfo.diary_id">댓글 {{ diaryInfo.diary_cmt_cnt }}개</NuxtLink>
       </div>
     </div>
   </v-card>
@@ -27,42 +27,63 @@
 
 <script>
 import MUtils from '@/mixins/MUtils.js'
-import VLike from '@/components/VLike'
 import authAPI from '@/api/authAPI'
 
 export default {
   mixins: [MUtils],
-  components: { VLike },
   props: {
     diary: Object
   },
   data() {
     return {
-      info: this.diary
+      diaryInfo: this.diary
     }
+  },
+  created () {
+    this.$bus.diaryLikeHit(this.LikeHit)
+  },
+  beforeDestroy(){
+    this.$bus.off('diaryLikeHit')
   },
   computed: {
     title() {
-      return this.createDatebar(this.info.diary_ymd)
+      return this.createDatebar(this.diaryInfo.diary_ymd)
             + ' ('
-            + this.info.diary_day
+            + this.diaryInfo.diary_day
             + ')' 
     }
   },
   methods: {
+    // 좋아요
     async LikeHit(val) {
-      if(val){
-        this.info.diary_like_cnt += 1
+      if(typeof val === 'boolean'){
+
+        this.updateLikeHit(val)
+
+        var param = { like_yn: val, diary_id: this.diaryInfo.diary_id }
+        const res = await authAPI(this).SaveDiaryLike(param)
+
       }else{
-        this.info.diary_like_cnt -= 1
-        if(this.info.diary_like_cnt < 0){
-          this.info.diary_like_cnt = 0
+        if(val.diary_id === this.diaryInfo.diary_id){
+          this.updateLikeHit(val.like_yn)
         }
       }
 
-      var param = { like_yn: val, diary_id: this.info.diary_id }
-      const res = await authAPI(this).SaveDiaryLike(param)
     },
+
+    updateLikeHit(val){
+      if(val){
+        this.diaryInfo.diary_like_cnt += 1
+      }else{
+        this.diaryInfo.diary_like_cnt -= 1
+        if(this.diaryInfo.diary_like_cnt < 0){
+          this.diaryInfo.diary_like_cnt = 0
+        }
+      }
+
+      this.diaryInfo.like_yn = val
+    }
+
   },
 }
 </script>
