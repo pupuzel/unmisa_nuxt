@@ -1,7 +1,7 @@
 <template>
   <v-card class="my-2 py-1 px-2" max-width="600" elevation="3">
     <div class="ct-title">{{ title }}</div>
-    <div class="ct-content">{{ diaryInfo.diary_content }}</div>
+    <pre class="ct-content">{{ diaryInfo.diary_content }}</pre>
     <div class="ct-tag-box">
       <v-chip v-if="diaryInfo.diary_place" 
               class="font-8" 
