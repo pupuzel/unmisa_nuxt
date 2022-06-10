@@ -3,13 +3,13 @@
     <v-card class="ct-box py-3 px-3 white" elevation="1">
       <!-- header -->
       <div class="ct-header">
-        <div class="d-flex">
+        <div class="d-flex align-center">
           <div class="ct-profile-img mr-2">
             <img :src="ProfileImg(user.user_profile_img)">
           </div>
-          <div class="d-flex flex-column">
-            <label class="font-weight-600">{{ user.user_nm }}</label>
-            <label class="font-9 grey--text">{{ title }}</label>
+          <div class="d-flex flex-column" style="line-height: 1rem;">
+            <label class="font-weight-600 font-9">{{ user.user_nm }}</label>
+            <label class="font-8 grey--text">{{ title }}</label>
           </div>
         </div>
 
@@ -18,7 +18,8 @@
 
       <!-- content -->
       <div class="ct-content">
-        <pre class="">{{ diary.diary_content }}</pre>
+        
+        <pre class="ct-content-pre">{{ diary.diary_content }}</pre>
         <div class="ct-tag-box">
           <v-chip v-if="diary.diary_place" 
                   class="font-8" 
@@ -30,6 +31,69 @@
             {{ diary.diary_place }}
           </v-chip>
         </div>
+
+        <div class="ct-comment">
+
+          <div class="d-flex align-start mb-2">
+            <div class="ct-profile-img mr-2">
+              <img :src="ProfileImg(user.user_profile_img)">
+            </div>
+            <div class="d-flex flex-column" style="line-height: 1rem;">
+              <label class="font-weight-600 font-8 mr-1">
+                헬린이
+                <label class="font-8 grey--text">1시간 전</label>
+              </label>
+              <pre class="black--text font-weight-300 mt-1 mb-1">오 좋아요 아주</pre>
+              <v-btn 
+                outlined 
+                elevation="1"
+                width="50"
+                x-small 
+                color="grey">답글</v-btn>
+            </div>
+          </div>
+
+          <div class="d-flex align-start mb-2">
+            <div class="ct-profile-img mr-2">
+              <img :src="ProfileImg(user.user_profile_img)">
+            </div>
+            <div class="d-flex flex-column" style="line-height: 1rem;">
+              <label class="font-weight-600 font-8 mr-1">
+                크린이 클라스
+                <label class="font-8 grey--text">25분 전</label>
+              </label>
+              <pre class="black--text font-weight-300 mt-1 mb-1">전기스쿠터 인가요?</pre>
+              <v-btn 
+                outlined 
+                elevation="1"
+                width="50"
+                x-small 
+                color="grey">답글</v-btn>
+            </div>
+          </div>
+
+          <div class="d-flex align-start mb-2">
+            <div class="pl-5 pr-1">↳</div>
+            <div class="ct-profile-img mr-2">
+              <img :src="ProfileImg(user.user_profile_img)">
+            </div>
+            <div class="d-flex flex-column" style="line-height: 1rem;">
+              <label class="font-weight-600 font-8 mr-1">
+                마포 꿀주먹
+                <label class="font-8 grey--text">3분 전</label>
+              </label>
+              <pre class="black--text font-weight-300 mt-1 mb-1">크로스핏 재미있을려나 난 너무 힘들던데</pre>
+              <v-btn 
+                outlined 
+                elevation="1"
+                width="50"
+                x-small 
+                color="grey">답글</v-btn>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
       <!-- footer -->
@@ -150,7 +214,12 @@ export default {
                       cmt_content: this.comment, 
                       cmt_depth: 0 }
         const res = await authAPI(this).CreateDiaryComment(param)
-        console.log(res.data)
+
+        if(res.data.result === 'Y'){
+          this.comment = ''
+        }else{
+          this.$notify.showMessage(response.data.message)
+        }
       }
     }
   },
@@ -163,20 +232,30 @@ export default {
 .ct-header{display: flex; flex-direction: column;}
 .ct-title{font-size:1rem; font-weight: 600; margin-bottom: 10px; margin-top:5px;}
 .ct-content{
-    flex:1; font-size:0.9rem; padding: 3px; overflow-y: scroll; -ms-overflow-style: none;
+    display: flex; flex-direction: column; flex:1; font-size:0.9rem; 
+    padding: 3px; overflow-y: scroll; -ms-overflow-style: none;
+    
+    .ct-content-pre{
+      white-space: pre-wrap;
+    }
+
     &::-webkit-scrollbar{
       display: none;
       width: 0 !important;
     }
+
+    .ct-comment{
+      flex:1;
+    }
 }
-.ct-tag-box{margin-bottom: 10px;}
+.ct-tag-box{margin-bottom: 20px;}
 .ct-footer{display: flex; flex-direction: column; font-size:0.9rem;}
 
 .ct-profile-img{
   display: flex; justify-content: center; align-items: center;
-  width: 3rem;
-  height: 3rem;
-  min-width: 3rem;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
   img{
      width: 100%; height: auto; object-fit: cover; border-radius: 50%;
   }

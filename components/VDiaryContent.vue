@@ -90,7 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .ct-title{font-size:1rem; font-weight: 600; margin-bottom: 10px; margin-top:5px;}
-.ct-content{font-size:0.9rem; padding: 3px;}
+.ct-content{font-size:0.9rem; padding: 3px; white-space: pre-wrap;}
 .ct-tag-box{margin-bottom: 10px;}
 .ct-footer{display: flex; flex-direction: row; justify-content:space-between; margin-top:5px; font-size:0.9rem;}
 </style>
