@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtChild></NuxtChild>
+    <NuxtChild :key="$route.params.id"></NuxtChild>
     <v-row v-if="!isCheckDiary">
       <!-- 프로필 -->
       <v-col cols="12" md="3">
@@ -82,7 +82,7 @@ export default {
     return `/user/${route.params.name}`
   },
   mounted () {
-
+    
   },
   mixins: [MUtils],
 
@@ -125,6 +125,7 @@ export default {
   computed: {
 
   },
+
 }
 </script>
 

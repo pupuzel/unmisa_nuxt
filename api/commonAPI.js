@@ -11,5 +11,9 @@ export default function({ $axios }){
             return $axios.post('/api/diary/selectDiary', param)
         },
 
+        // 운동 일기 댓글 리스트
+        selectDiaryCmtList(param){
+            return $axios.post('/api/diary/selectDiaryCmtList', param)
+        },
     }
 }

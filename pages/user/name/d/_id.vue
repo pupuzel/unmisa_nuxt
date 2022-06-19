@@ -33,65 +33,47 @@
         </div>
 
         <div class="ct-comment">
+          <div v-for="obj in diaryCmtList" :key="obj.cmt_id">
 
-          <div class="d-flex align-start mb-2">
-            <div class="ct-profile-img mr-2">
-              <img :src="ProfileImg(user.user_profile_img)">
+            <div v-if="obj.cmt_depth == 0" class="d-flex align-start mb-2">
+              <div class="ct-profile-img mr-2">
+                <img :src="ProfileImg(user.user_profile_img)">
+              </div>
+              <div class="d-flex flex-column" style="line-height: 1rem;">
+                <label class="font-weight-600 font-8 mr-1">
+                  {{obj.user_nm}}
+                  <label class="font-8 grey--text">25분 전</label>
+                </label>
+                <pre class="black--text font-weight-300 mt-1 mb-1">{{obj.cmt_content}}</pre>
+                <v-btn 
+                  outlined 
+                  elevation="1"
+                  width="50"
+                  x-small 
+                  color="grey">답글</v-btn>
+              </div>
             </div>
-            <div class="d-flex flex-column" style="line-height: 1rem;">
-              <label class="font-weight-600 font-8 mr-1">
-                헬린이
-                <label class="font-8 grey--text">1시간 전</label>
-              </label>
-              <pre class="black--text font-weight-300 mt-1 mb-1">오 좋아요 아주</pre>
-              <v-btn 
-                outlined 
-                elevation="1"
-                width="50"
-                x-small 
-                color="grey">답글</v-btn>
+
+            <div v-else class="d-flex align-start mb-2">
+              <div class="pl-5 pr-1">↳</div>
+              <div class="ct-profile-img mr-2">
+                <img :src="ProfileImg(user.user_profile_img)">
+              </div>
+              <div class="d-flex flex-column" style="line-height: 1rem;">
+                <label class="font-weight-600 font-8 mr-1">
+                  {{obj.user_nm}}
+                  <label class="font-8 grey--text">3분 전</label>
+                </label>
+                <pre class="black--text font-weight-300 mt-1 mb-1">{{obj.cmt_content}}</pre>
+                <v-btn 
+                  outlined 
+                  elevation="1"
+                  width="50"
+                  x-small 
+                  color="grey">답글</v-btn>
+              </div>
             </div>
           </div>
-
-          <div class="d-flex align-start mb-2">
-            <div class="ct-profile-img mr-2">
-              <img :src="ProfileImg(user.user_profile_img)">
-            </div>
-            <div class="d-flex flex-column" style="line-height: 1rem;">
-              <label class="font-weight-600 font-8 mr-1">
-                크린이 클라스
-                <label class="font-8 grey--text">25분 전</label>
-              </label>
-              <pre class="black--text font-weight-300 mt-1 mb-1">전기스쿠터 인가요?</pre>
-              <v-btn 
-                outlined 
-                elevation="1"
-                width="50"
-                x-small 
-                color="grey">답글</v-btn>
-            </div>
-          </div>
-
-          <div class="d-flex align-start mb-2">
-            <div class="pl-5 pr-1">↳</div>
-            <div class="ct-profile-img mr-2">
-              <img :src="ProfileImg(user.user_profile_img)">
-            </div>
-            <div class="d-flex flex-column" style="line-height: 1rem;">
-              <label class="font-weight-600 font-8 mr-1">
-                마포 꿀주먹
-                <label class="font-8 grey--text">3분 전</label>
-              </label>
-              <pre class="black--text font-weight-300 mt-1 mb-1">크로스핏 재미있을려나 난 너무 힘들던데</pre>
-              <v-btn 
-                outlined 
-                elevation="1"
-                width="50"
-                x-small 
-                color="grey">답글</v-btn>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -99,7 +81,7 @@
       <!-- footer -->
       <div class="ct-footer mt-1">
         <div class="d-flex align-center">
-          <VLike :on-like="LikeHit" :like-yn.sync="diary.like_yn" :key="key"></VLike>
+          <VLike :on-like="LikeHit" :like-yn.sync="diary.like_yn"></VLike>
           <label class="font-bold">{{ diary.diary_like_cnt }}명</label>이 좋아해요
         </div>
 
@@ -152,10 +134,17 @@ export default {
     }
   },
 
+  mounted () {
+    this.selectCmtList() //댓글 조회
+  },
+
   data() {
     return {
       key: 1, // 일기 상세 페이지 keepalive 방지
       comment: '',
+      user: null,
+      diary: null,
+      diaryCmtList: [],
     }
   },
 
@@ -186,6 +175,18 @@ export default {
   },
 
   methods: {
+     selectCmtList(){
+        const _this = this
+        const param = { diary_id: this.$route.params.id }
+
+        commonAPI(this).selectDiaryCmtList(param).then((res) => {
+          if(res.data.result === 'Y'){
+            _this.diaryCmtList = res.data.data
+          }
+        })
+
+     },
+
      // 좋아요 클릭 이벤트
      async LikeHit(val) {
       if(val){
@@ -217,6 +218,7 @@ export default {
 
         if(res.data.result === 'Y'){
           this.comment = ''
+          this.selectCmtList() // 댓글 다시 조회
         }else{
           this.$notify.showMessage(response.data.message)
         }
