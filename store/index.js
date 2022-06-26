@@ -23,7 +23,7 @@ export const mutations = {
         state.toastMessage = message;
     },
 
-    setLayout(state,name){
+    setLayout(state, name){
         state.layout = name;
     },
 }

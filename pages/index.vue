@@ -67,6 +67,7 @@
 
 <script>
 export default {
+  layout({ store }){ store.commit('setLayout','default') },
   data() {
     return {
       device: 'W'

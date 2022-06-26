@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtChild :key="$route.params.id"></NuxtChild>
+    <NuxtChild></NuxtChild>
     <v-row v-if="!isCheckDiary">
       <!-- 프로필 -->
       <v-col cols="12" md="3">
@@ -77,12 +77,13 @@
 import MUtils from '@/mixins/MUtils.js'
 import userAPI from '@/api/userAPI'
 export default {
+  layout({ store }){ store.commit('setLayout','default') },
   // 현재 페이지가 keepalive 때문에 자식 페이지 제외 시키기 위해 key 추가
   key(route){
     return `/user/${route.params.name}`
   },
   mounted () {
-    
+
   },
   mixins: [MUtils],
 
@@ -125,7 +126,6 @@ export default {
   computed: {
 
   },
-
 }
 </script>
 

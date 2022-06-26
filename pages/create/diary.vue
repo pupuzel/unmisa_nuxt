@@ -87,7 +87,7 @@ export default {
 
         const response = await authAPI(this).CreateDiary(this.diaryInfo)
         if(response.data.result === 'Y'){
-          this.$router.replace('/user/' + this.userInfo.user_nm)
+          window.location.replace('/user/' + this.userInfo.user_nm);
         }else{
           this.$notify.showMessage(response.data.message)
         }

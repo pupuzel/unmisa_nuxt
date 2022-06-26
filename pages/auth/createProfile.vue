@@ -115,6 +115,7 @@ import cover from 'canvas-image-cover'
 import MUtils from "@/mixins/MUtils.js"
 import userAPI from '@/api/userAPI'
 export default {
+  layout({ store }){ store.commit('setLayout','default') },
   mixins: [MUtils],
 
   asyncData({ app, store, redirect }){

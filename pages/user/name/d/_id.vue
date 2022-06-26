@@ -134,10 +134,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.selectCmtList() //댓글 조회
-  },
-
   data() {
     return {
       key: 1, // 일기 상세 페이지 keepalive 방지
@@ -168,13 +164,17 @@ export default {
 
   activated(){
     this.DisableScroll()
-    this.key++ 
+    //this.key++ 
+
+    this.selectCmtList() //댓글 조회
   },
   deactivated () {
     this.EnableScroll()
   },
 
   methods: {
+
+     // 댓글 리스트 조회
      selectCmtList(){
         const _this = this
         const param = { diary_id: this.$route.params.id }
