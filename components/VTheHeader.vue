@@ -46,7 +46,7 @@
                 <v-list-item-title @click="MoveCreate('diary')"> 일기 쓰기</v-list-item-title>
               </v-list-item>
               <v-list-item>
-                <v-list-item-title @click="MoveCreate('menu')">운동 메뉴 만들기</v-list-item-title>
+                <v-list-item-title @click="MoveCreate('schedule')">운동 메뉴 만들기</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -122,8 +122,8 @@ export default {
         }else{
           this.$notify.showMessage('일기는 하루에 한번 작성 가능합니다')
         }
-      }else if(type === 'board'){
-        //
+      }else if(type === 'schedule'){
+        this.$router.push('/create/' + type)
       }
     }
   },

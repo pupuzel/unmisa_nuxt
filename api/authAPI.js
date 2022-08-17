@@ -18,5 +18,9 @@ export default function({ $axios }){
         SaveDiaryLike(param){
             return $axios.post('/api/diary/saveDiaryLike', param)
         },
+
+        createSchedule(param){
+            return $axios.post('/api/schedule/createSchedule', param)
+        },
     }
 }
