@@ -4,7 +4,7 @@
       <VDiaryContent :key="obj.diary_id" :diary="obj"></VDiaryContent>
     </template>
     <client-only>
-      <VlistLoading v-if="diaryList.length" class="ct-list-loading" @infinite="SelectDiaryList(true, $event)"></VlistLoading>
+
     </client-only>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
     userInfo: Object
   },
 
-  components: { VlistLoading },
+
   fetchOnServer: false,
   async fetch(){
     await this.SelectDiaryList()

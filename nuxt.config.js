@@ -62,7 +62,7 @@ export default {
 
   proxy: {
     '/api/': {
-      target: "http://localhost:7000/",
+      target: "http://localhost:28301/",
       //pathRewrite: { "^/api/": "" }
     }
   },
